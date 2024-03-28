@@ -1,10 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import "./loginComponent.css";
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const auth = getAuth();
+    
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate('/home');
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleLogin}>
       <h3>Login</h3>
       <div className="mb-3">
         <label>Email</label>
@@ -12,6 +31,8 @@ function Login() {
           type="email"
           className="form-control"
           placeholder="Digite seu email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="mb-3">
@@ -20,21 +41,12 @@ function Login() {
           type="password"
           className="form-control"
           placeholder="Digite sua senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div className="mb-3">
-        <div className="custom-control custom-checkbox custom-checkbox-spacing">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customCheck1"
-          />
-          <label className="custom-control-label" htmlFor="customCheck1">
-            Salvar
-          </label>
-        </div>
-      </div>
-      <div className="d-grid mb-3"> {/* Adicionando a classe mb-3 para espaçamento */}
+      {error && <p className="error-message">{error}</p>}
+      <div className="d-grid mb-3">
         <button type="submit" className="btn btn-primary">
           Login
         </button>
@@ -46,10 +58,6 @@ function Login() {
           Cadastro
         </Link>
       </div>
-
-      {/* <p className="forgot-password text-right">
-        Esqueceu a <a href="#">senha?</a>
-      </p> */}
     </form>
   );
 }
