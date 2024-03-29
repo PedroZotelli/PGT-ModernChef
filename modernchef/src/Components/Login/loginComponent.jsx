@@ -31,20 +31,29 @@ function Login() {
           <section className="section_form">
             <h3>Login</h3>
             <form onSubmit={handleLogin} className="feed-form">
+            <div className="mb-3">
+                <label>Email</label>
               <input 
                 required 
-                placeholder="E-mail" 
+                placeholder="Digite seu e-mail" 
                 type="email" 
                 value={email} 
+                name="email"
+                className="form-control"
                 onChange={(e) => setEmail(e.target.value)} 
               />
+              </div>
+              <div className="mb-3">
+                <label>Senha</label>
               <input 
                 required 
-                placeholder="Senha" 
+                placeholder="Digite sua senha" 
                 type="password" 
+                className="form-control"
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
               />
+              </div>
               {error && <p className="error-message">{error}</p>}
               <button type="submit" className="button_submit">Login</button>
             </form>
