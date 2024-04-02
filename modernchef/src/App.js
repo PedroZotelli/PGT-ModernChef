@@ -6,6 +6,7 @@ import Login from './Components/Login/loginComponent';
 import SignUp from './Components/SignUp/signupComponent';
 import Home from './Components/Home/home';
 import Navbar from './Components/Navbar/navbarComponent';
+import Profile from './Components/Profile/profileComponent';
 
 import { useAuth } from './firebase';
 
@@ -22,7 +23,7 @@ function App() {
         {/* Verifica se o usuário está autenticado */}
         {/* Se sim, redireciona para a página de home */}
         {/* Se não, redireciona para a página de login */}
-        <Route path="/home" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

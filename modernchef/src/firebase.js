@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth'; // Adicionando signOut
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
@@ -32,6 +32,7 @@ export const useAuth = () => {
   return { user };
 };
 
+// Função para criar um novo usuário com e-mail e senha
 export const signUpWithEmailPassword = async (email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -40,4 +41,21 @@ export const signUpWithEmailPassword = async (email, password) => {
   } catch (error) {
     throw error;
   }
+};
+
+// Função para fazer logout
+export const logout = async () => {
+  try {
+    await signOut(auth); // Chama a função de logout do Firebase
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Exporte o objeto de autenticação (auth) e o objeto do aplicativo Firebase (app)
+export { auth, app };
+
+// Função para inicializar o aplicativo Firebase
+export const initializeFirebaseApp = () => {
+  return app;
 };
