@@ -1,9 +1,23 @@
-import React, { Component } from "react";
-import { signUpWithEmailPassword } from "../../firebase";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   const navigate = useNavigate();
+
+  const signUpWithEmailPassword = async (email, password) => {
+    const auth = getAuth();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      return userCredential.user;
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -13,7 +27,7 @@ export default function SignUp() {
 
     try {
       await signUpWithEmailPassword(email, password);
-      navigate("/sign-in");
+      navigate("/login");
     } catch (error) {
       console.error("Erro ao criar usuário:", error.message);
     }
