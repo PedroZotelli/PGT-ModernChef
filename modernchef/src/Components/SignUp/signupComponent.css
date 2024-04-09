@@ -12,6 +12,7 @@
   background-image: url('../Assets/imagem_fundo_login.png');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 91.5%;
 }
 .login-container {
   display: grid;

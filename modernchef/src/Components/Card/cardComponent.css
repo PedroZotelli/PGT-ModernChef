@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  .card-wrapper {
+    flex: 0 1 calc(50% - 12.5px);
+    margin-bottom: 25px;
+  }
+  
+  

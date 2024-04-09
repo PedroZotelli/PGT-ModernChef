@@ -1,26 +1,43 @@
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from "react-bootstrap/Carousel";
+import "./carouselComponent.css";
 
 function CarouselCopm() {
   return (
     <Carousel fade>
       <Carousel.Item>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlDLs8ti367KV0OjoeYne_YZGeTBB6L7CFe9PyWtRlUQ&s' />
+        <div className="container">
+          <img
+            src="https://midianinja.org/wp-content/uploads/2022/09/alimentacao-escolar-merenda-1200x630.jpg"
+            alt="Imagem"
+          />
+        </div>
         <Carousel.Caption>
-          <h3>First slide label</h3>
+          <h3>Prato 1</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src='https://static.itdg.com.br/images/1200-630/8564ddd6287d2a9271b50ba1fca8a7d6/shutterstock-413580649.jpg'/>
+        <div className="container">
+          <img
+            src="https://opopularpr.com.br/wp-content/uploads/2023/04/Porks-Araucaria-participa-do-1o-Festival-Nacional-de-Comida-de-Boteco-promovido-pela-rede-1200x630.jpg.webp"
+            alt="Imagem"
+          />
+        </div>
+
         <Carousel.Caption>
-          <h3>Second slide label</h3>
+          <h3>Prato 2</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src='https://www.cnnbrasil.com.br/viagemegastronomia/wp-content/uploads/sites/5/2021/09/comida-brasileira-sao-paulo.gif?w=1200&h=674&crop=1' />
+        <div className="container">
+          <img
+            src="https://www.unipar.br/media/images/Fbel_alimentacao_1.2e16d0ba.fill-1200x630-c100.jpg"
+            alt="Imagem"
+          />
+        </div>
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Prato 3</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
