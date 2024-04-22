@@ -39,17 +39,6 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Pesquisar"
-              aria-label="Pesquisar"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Pesquisar
-            </button>
-          </form>
         </div>
       </div>
     </nav>
