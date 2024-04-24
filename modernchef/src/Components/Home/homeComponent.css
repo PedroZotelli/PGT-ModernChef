@@ -1,24 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap');
 
-.h1 {
-    text-align: center;
-    font-family: 'Sora', sans-serif;
+.home-page {
+  font-family: 'Sora', sans-serif;
+  background-color: #E7E7E8;
+  display: flex;
+  flex-direction: column;
 }
 
-.page {
-    background-color: #E7E7E8;
-    text-align: center;
-    font-family: 'Sora', sans-serif;
-    justify-content: center;
-    display: block;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: white;
 }
 
-.search-bar-container{
-    padding-top: 20vh;
-    width: 40%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 200px;
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-links a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.title {
+  text-align: center;
+  margin: 2rem 0;
+  font-weight: 400;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.search-bar-container {
+  width: 40%;
+  margin: 1rem auto;
+}
+
+.filter-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #FCA311;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+main {
+  margin-top: 2rem;
 }
