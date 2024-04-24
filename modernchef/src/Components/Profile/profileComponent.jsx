@@ -1,45 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useAuth, logout as firebaseLogout } from '../../firebase'; // ou o caminho correto para o arquivo firebase.js
+import { useAuth, logout as firebaseLogout } from '../../firebase';
+import './profileComponent.css';
 
 function ProfilePage() {
   const { user } = useAuth();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    // Verificar se o usuário está autenticado
     if (user) {
-      // Aqui você pode acessar os dados do usuário e atualizar o estado para renderizar na página
       setUserData({
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        // Outras informações que você queira exibir
       });
     }
   }, [user]);
 
   const handleLogout = async () => {
     try {
-      await firebaseLogout(); // Chama a função de logout do Firebase
+      await firebaseLogout();
     } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+      console.error('Error logging out:', error);
     }
   };
 
-  // Renderizar os dados do usuário na página
   return (
-    <div>
+    <div className="container mt-5">
       {userData ? (
-        <div>
-          <h1>Perfil do Usuário</h1>
-          <p>Nome: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          {/* Aqui você pode adicionar mais informações do usuário */}
-          <img src={userData.photoURL} alt="Foto de Perfil" />
-          <button onClick={handleLogout}>Logout</button>
+        <div className="card profile-card">
+          <img src={userData.photoURL} className="card-img-top profile-image" />
+          <div className="card-body">
+            <h1 className="card-title">Perfil</h1>
+            <p className="card-text"><strong>Nome:</strong> {userData.name}</p>
+            <p className="card-text"><strong>Email:</strong> {userData.email}</p>
+            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+          </div>
         </div>
       ) : (
-        <p>Carregando...</p>
+        <div className="text-center">
+          <p>Loading...</p>
+        </div>
       )}
     </div>
   );
