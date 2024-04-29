@@ -1,15 +1,27 @@
+import React, { useState } from 'react';
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
+import RecipeComponent from '../Recipe/recipeComponent';
 import "./cardComponent.css";
 
-function Cards() {
-  // Repeatable card component for "Salada de frutas com amêndoas"
+function Cards({ recipe, type }) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const renderRecipeCard = () => (
     <div className="recipe-card">
       <Card className="custom-card">
         <div className="row g-0">
           <div className="col-md-4">
-            <Card.Img
+            {/* <Card.Img
+              variant="top"
+              src={require(`${recipe.imgSrc}`)}
+              className="card-img-left"
+            /> */}
+             <Card.Img
               variant="top"
               src={require("../Assets/imagem_fundo_login.png")}
               className="card-img-left"
@@ -17,16 +29,21 @@ function Cards() {
           </div>
           <div className="col-md-8">
             <Card.Body>
-              <Card.Title>Salada de frutas com amêndoas</Card.Title>
-              <Card.Text>
-                Banana, maçã, laranja, morango, manga, e um toque de hortelã.
-                Fresquinha e suculenta!
-              </Card.Text>
+              <Card.Title>{recipe.title}</Card.Title>
+              <Card.Text>{recipe.description}</Card.Text>
               <div className="card-info">
-                <Card.Text>Serve 2 pessoas</Card.Text>
-                <Card.Text>15 minutos</Card.Text>
+                <Card.Text>{recipe.serves}</Card.Text>
+                <Card.Text>{recipe.time}</Card.Text>
               </div>
-              <Button variant="custom">Ver Receita e Nutrientes</Button>
+              <Button variant="custom" onClick={handleShow}>Ver Receita e Nutrientes</Button>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Detalhes da Receita</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <RecipeComponent />
+                </Modal.Body>
+              </Modal>
             </Card.Body>
           </div>
         </div>
@@ -34,7 +51,6 @@ function Cards() {
     </div>
   );
 
-  // Card component for "Fruta do Dia"
   const renderHighlightCard = () => (
     <div className="highlight-card">
       <Card className="bg-none custom-highlight-card">
@@ -42,7 +58,7 @@ function Cards() {
         <Card.Body className="card-overlay">
           <Card.Title>Fruta do Dia</Card.Title>
           <Card.Text>Laranja Lima</Card.Text>
-          <Button variant="custom">Ver Benefícios</Button>
+          <Button variant="custom" className="highlight-button">Ver Benefícios</Button>
         </Card.Body>
       </Card>
     </div>
@@ -50,9 +66,7 @@ function Cards() {
 
   return (
     <div className="card-container">
-      {renderRecipeCard()}
-      {renderHighlightCard()}
-      {renderRecipeCard()} {/* Duplicate the recipe card below */}
+      {type === 'recipe' ? renderRecipeCard() : renderHighlightCard()}
     </div>
   );
 }
