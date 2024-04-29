@@ -20,35 +20,35 @@
 
 .cards-row {
   display: flex;
-  justify-content: space-between; /* Ajusta para space-between para garantir o espaçamento correto */
+  justify-content: space-between;
   margin-top: 2rem;
 }
 
-.cards-row > .recipe-card { /* Você precisará adicionar a classe 'recipe-card' aos componentes Card no JSX */
+.cards-row > .recipe-card {
   flex: 1;
 }
 
-.recipe-card.large { /* Classe para o card grande */
-  flex: 0 0 65%; /* 65% da linha */
+.recipe-card.large {
+  flex: 0 0 65%;
   max-width: 65%;
 }
 
-.recipe-card.small { /* Classe para o card pequeno */
-  flex: 0 0 35%; /* 35% da linha */
+.recipe-card.small {
+  flex: 0 0 35%;
   max-width: 35%;
 }
 
 .recipe-card {
-  flex: 0 0 calc(55% - 20px); /* Reduzido para 55% menos o espaçamento */
-  margin-right: 20px; /* Espaçamento entre os cards */
-  margin-left: 20px; /* Espaçamento à esquerda do card de receita */
+  flex: 0 0 calc(55% - 20px);
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .cards-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 65%; /* Certifica que os cards repetidos também ocupem 65% */
+  width: 65%;
   margin-top: 2rem;
 }
 
@@ -64,11 +64,11 @@
 }
 
 .search-bar-wrapper {
-  padding: 0 15px; /* Adicione espaçamento conforme necessário */
+  padding: 0 15px;
 }
 
 .cards-layout {
   display: flex;
-  justify-content: space-between; /* Isso garantirá que haja espaço entre os cards */
+  justify-content: space-between;
   margin: 20px 0;
 }
