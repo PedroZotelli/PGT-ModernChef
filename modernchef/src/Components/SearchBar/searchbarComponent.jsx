@@ -28,7 +28,7 @@ function SearchbarComponent () {
         <div className = "input-wrapper">
             <FaSearch id="search-icon" />
             <input 
-            placeholder = 'Type to search...' 
+            placeholder = 'Pesquise uma receita' 
             value={input} 
             onChange={(e) => handleChange(e.target.value)}
             />

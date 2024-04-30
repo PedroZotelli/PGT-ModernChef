@@ -25,7 +25,7 @@ const Home = () => {
     <div className='home-page'>
       <header className='hero'>
         <h1 className="title">
-          Veja receitas saudáveis para tornar o seu dia a dia mais nutritivo
+          Veja <b>receitas saudáveis</b> para tornar o seu dia a dia mais nutritivo!
         </h1>
         <div className="search-bar-wrapper">
           <SearchbarComponent />
