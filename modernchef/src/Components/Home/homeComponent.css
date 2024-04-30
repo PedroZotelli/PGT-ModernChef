@@ -55,12 +55,13 @@
 
 .filter-button {
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem;
   border: none;
   background-color: #FCA311;
   color: white;
   border-radius: 20px;
   cursor: pointer;
+  margin-bottom: -20px;
 }
 
 .search-bar-wrapper {

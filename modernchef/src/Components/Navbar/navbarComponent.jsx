@@ -38,6 +38,11 @@ function Navbar() {
                 Cadastro
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">
+                Perfil
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
