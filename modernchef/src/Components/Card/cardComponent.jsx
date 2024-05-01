@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
-import RecipeComponent from '../Recipe/recipeComponent';
+import RecipeComponent from "../Recipe/recipeComponent";
+import FrutaComponent from "../Fruta/frutaComponent";
 import "./cardComponent.css";
 
 function Cards({ recipe, type }) {
   const [show, setShow] = useState(false);
+  const [showFruit, setShowFruit] = useState(false); // Estado para controlar o modal de frutas
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+  const handleCloseFruit = () => setShowFruit(false); // Função para fechar o modal de frutas
+  const handleShowFruit = () => setShowFruit(true); // Função para abrir o modal de frutas
 
   const renderRecipeCard = () => (
     <div className="recipe-card">
       <Card className="custom-card">
         <div className="row g-0">
           <div className="col-md-4">
-            {/* <Card.Img
-              variant="top"
-              src={require(`${recipe.imgSrc}`)}
-              className="card-img-left"
-            /> */}
-             <Card.Img
+            <Card.Img
               variant="top"
               src={require("../Assets/imagem_fundo_login.png")}
               className="card-img-left"
@@ -35,7 +35,9 @@ function Cards({ recipe, type }) {
                 <Card.Text>{recipe.serves}</Card.Text>
                 <Card.Text>{recipe.time}</Card.Text>
               </div>
-              <Button variant="custom" onClick={handleShow}>Ver Receita e Nutrientes</Button>
+              <Button variant="custom" onClick={handleShow}>
+                Ver Receita e Nutrientes
+              </Button>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Detalhes da Receita</Modal.Title>
@@ -58,7 +60,21 @@ function Cards({ recipe, type }) {
         <Card.Body className="card-overlay">
           <Card.Title>Fruta do Dia</Card.Title>
           <Card.Text>Laranja Lima</Card.Text>
-          <Button variant="custom" className="highlight-button">Ver Benefícios</Button>
+          <Button
+            variant="custom"
+            className="highlight-button"
+            onClick={handleShowFruit}
+          >
+            Ver Benefícios
+          </Button>
+          <Modal show={showFruit} onHide={handleCloseFruit}>
+            <Modal.Header closeButton>
+              <Modal.Title>Detalhes da Fruta</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <FrutaComponent />
+            </Modal.Body>
+          </Modal>
         </Card.Body>
       </Card>
     </div>
@@ -66,7 +82,7 @@ function Cards({ recipe, type }) {
 
   return (
     <div className="card-container">
-      {type === 'recipe' ? renderRecipeCard() : renderHighlightCard()}
+      {type === "recipe" ? renderRecipeCard() : renderHighlightCard()}
     </div>
   );
 }
