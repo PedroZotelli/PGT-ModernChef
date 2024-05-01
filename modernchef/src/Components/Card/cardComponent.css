@@ -52,6 +52,7 @@
   background-color: #FCA311;
   border: none;
   color: white;
+  margin-top: 50px;
 }
 
 .btn-custom:hover {
@@ -85,4 +86,8 @@
     transform: none;
     margin-top: 10px;
   }
+}
+
+.custom-card .card-body .card-text {
+  margin-bottom: 28px;
 }
