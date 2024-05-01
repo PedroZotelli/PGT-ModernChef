@@ -8,13 +8,13 @@ import "./cardComponent.css";
 
 function Cards({ recipe, type }) {
   const [show, setShow] = useState(false);
-  const [showFruit, setShowFruit] = useState(false); // Estado para controlar o modal de frutas
+  const [showFruit, setShowFruit] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const handleCloseFruit = () => setShowFruit(false); // Função para fechar o modal de frutas
-  const handleShowFruit = () => setShowFruit(true); // Função para abrir o modal de frutas
+  const handleCloseFruit = () => setShowFruit(false);
+  const handleShowFruit = () => setShowFruit(true);
 
   const renderRecipeCard = () => (
     <div className="recipe-card">
@@ -59,7 +59,7 @@ function Cards({ recipe, type }) {
         <Card.Img src={require("../Assets/laranja.jpg")} />
         <Card.Body className="card-overlay">
           <Card.Title>Fruta do Dia</Card.Title>
-          <Card.Text>Laranja Lima</Card.Text>
+          <Card.Text>-</Card.Text>
           <Button
             variant="custom"
             className="highlight-button"
@@ -82,7 +82,15 @@ function Cards({ recipe, type }) {
 
   return (
     <div className="card-container">
-      {type === "recipe" ? renderRecipeCard() : renderHighlightCard()}
+      {type === "recipe" ? (
+        <>
+          {renderRecipeCard()}
+          {renderRecipeCard()}
+          {renderRecipeCard()}
+        </>
+      ) : (
+        renderHighlightCard()
+      )}
     </div>
   );
 }
