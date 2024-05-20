@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../Assets/logo.png'; 
+import './navbarComponent.css'; // Importa o arquivo CSS
 
 function Navbar() {
   return (
@@ -38,9 +39,16 @@ function Navbar() {
                 Cadastro
               </Link>
             </li>
+          </ul>
+          <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/profile">
                 Perfil
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/logout">
+                Sair
               </Link>
             </li>
           </ul>
