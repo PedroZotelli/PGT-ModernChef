@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth'; // Adicionando signOut
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { getStorage } from 'firebase/storage'; // Importando getStorage
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNZcR8-ZjrUlSLWmX5ccE-wvo_WUWVdcQ",
@@ -16,6 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const storage = getStorage(app); // Inicializando o Storage
 
 // Hook personalizado para gerenciar o estado de autenticação
 export const useAuth = () => {
@@ -52,8 +54,8 @@ export const logout = async () => {
   }
 };
 
-// Exporte o objeto de autenticação (auth) e o objeto do aplicativo Firebase (app)
-export { auth, app };
+// Exporte o objeto de autenticação (auth), o objeto do aplicativo Firebase (app) e o storage
+export { auth, app, storage };
 
 // Função para inicializar o aplicativo Firebase
 export const initializeFirebaseApp = () => {
