@@ -1,4 +1,3 @@
-// src/Components/GetItem.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -19,6 +18,15 @@ const ItemName = styled.h3`
 const ItemDetail = styled.p`
     margin: 5px 0;
     color: #666;
+`;
+
+const List = styled.ul`
+    list-style: none;
+    padding: 0;
+`;
+
+const ListItem = styled.li`
+    margin: 0;
 `;
 
 function GetItem() {
@@ -42,12 +50,37 @@ function GetItem() {
             {items.map(item => (
                 <ItemCard key={item._id}>
                     <ItemName>{item.nome}</ItemName>
-                    <ItemDetail>Ingredientes: {item.ingredientes.join(', ')}</ItemDetail>
-                    <ItemDetail>Modo de Preparo: {item.modo_preparo}</ItemDetail>
+                    <ItemDetail>
+                        Ingredientes:
+                        <List>
+                            {item.ingredientes.map((ingrediente, index) => (
+                                <ListItem key={index}>
+                                    {ingrediente.nome} - {ingrediente.quantidade}
+                                </ListItem>
+                            ))}
+                        </List>
+                    </ItemDetail>
+                    <ItemDetail>
+                        Modo de Preparo:
+                        <List>
+                            {item.modo_preparo.map((etapa, index) => (
+                                <ListItem key={index}>{etapa}</ListItem>
+                            ))}
+                        </List>
+                    </ItemDetail>
                     <ItemDetail>Calorias: {item.calorias}</ItemDetail>
                     <ItemDetail>Porções: {item.porcoes}</ItemDetail>
                     <ItemDetail>Tipo: {item.tipo}</ItemDetail>
-                    <ItemDetail>Nutrientes: {item.nutrientes.join(', ')}</ItemDetail>
+                    <ItemDetail>
+                        Nutrientes:
+                        <List>
+                            {item.nutrientes.map((nutriente, index) => (
+                                <ListItem key={index}>
+                                    {nutriente.nome} - {nutriente.quantidade}
+                                </ListItem>
+                            ))}
+                        </List>
+                    </ItemDetail>
                 </ItemCard>
             ))}
         </div>

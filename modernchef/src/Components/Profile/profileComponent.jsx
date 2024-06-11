@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< Updated upstream
-import { useAuth, logout as firebaseLogout } from '../../firebase';
-import './profileComponent.css';
-
-function ProfilePage() {
-  const { user } = useAuth();
-  const [userData, setUserData] = useState(null);
-=======
 import { useAuth, logout } from '../../firebase';
 import { storage } from '../../firebase'; // Importando o storage
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -14,23 +6,37 @@ import { updateProfile } from 'firebase/auth';
 import styled from 'styled-components';
 import AddItem from '../AddItem';
 import DeleteItem from '../DeleteItem';
-import GetItem from '../GetItem';
+import GetItem from '../GetItem'; // Importando o componente GetItem
 import './profileComponent.css';
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+`;
 
 const Card = styled.div`
     background: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 1000px;
+    display: flex;
     font-family: 'Sora', sans-serif;
 `;
 
-const ProfileHeader = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+const ProfileSection = styled.div`
+    flex: 1;
+    border-right: 1px solid #eaeaea;
+    padding-right: 20px;
+    text-align: center;
+`;
+
+const DetailsSection = styled.div`
+    flex: 2;
+    padding-left: 20px;
 `;
 
 const ProfileImage = styled.img`
@@ -57,25 +63,62 @@ const ProfileEmail = styled.p`
     margin: 5px 0;
 `;
 
+const ProfileStatus = styled.p`
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+`;
+
 const Button = styled.button`
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
     font-size: 1rem;
     cursor: pointer;
     margin: 5px;
 
     &:hover {
-        background-color: #0056b3;
+        opacity: 0.8;
+    }
+`;
+
+const UploadButton = styled(Button)`
+    background-color: #ff7f50;
+
+    margin-top:20px;
+
+    &:hover {
+        background-color: #e06666;
+    }
+`;
+
+const LogoutButton = styled(Button)`
+    background-color: #dc3545;
+
+    &:hover {
+        background-color: #c82333;
     }
 `;
 
 const CrudButtons = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 20px;
+`;
+
+const RecipeButton = styled(Button)`
+    background-color: #ff7f50;
+
+    &:hover {
+        background-color: #e06666;
+    }
+`;
+
+const UploadSection = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 `;
 
 function ProfilePage() {
@@ -84,39 +127,17 @@ function ProfilePage() {
     const [view, setView] = useState('');
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
->>>>>>> Stashed changes
 
-  useEffect(() => {
-    if (user) {
-      setUserData({
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-      });
-    }
-  }, [user]);
+    useEffect(() => {
+        if (user) {
+            setUserData({
+                name: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+            });
+        }
+    }, [user]);
 
-<<<<<<< Updated upstream
-  const handleLogout = async () => {
-    try {
-      await firebaseLogout();
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
-  return (
-    <div className="container mt-5">
-      {userData ? (
-        <div className="card profile-card">
-          <img src={userData.photoURL} className="card-img-top profile-image" />
-          <div className="card-body">
-            <h1 className="card-title">Perfil</h1>
-            <p className="card-text"><strong>Nome:</strong> {userData.name}</p>
-            <p className="card-text"><strong>Email:</strong> {userData.email}</p>
-            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-          </div>
-=======
     const handleImageChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
@@ -152,42 +173,44 @@ function ProfilePage() {
     };
 
     return (
-        <div className="container mt-5">
+        <Container>
             <Card>
                 {userData ? (
-                    <div className="profile-card">
-                        <ProfileHeader>
+                    <>
+                        <ProfileSection>
                             <ProfileImage src={userData.photoURL} alt="Profile" />
                             <ProfileInfo>
                                 <ProfileName>{userData.name}</ProfileName>
                                 <ProfileEmail>{userData.email}</ProfileEmail>
+                                <ProfileStatus>Status: Adoro a culinária japonesa</ProfileStatus>
+                                <ProfileStatus>Social: +11 1929-1920</ProfileStatus>
+                                <ProfileStatus>País: Brasil</ProfileStatus>
+                                <UploadSection>
+                            </UploadSection>
+                            <input type="file" onChange={handleImageChange} />
+                            <UploadButton onClick={handleUpload} className="botao-upload"> Upload</UploadButton>
+                            <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
                             </ProfileInfo>
-                        </ProfileHeader>
-                        <input type="file" onChange={handleImageChange} />
-                        <Button onClick={handleUpload}>Upload</Button>
-                        <Button onClick={handleLogout}>Logout</Button>
-                        <CrudButtons>
-                            <Button onClick={() => setView('ADD')}>ADICIONAR</Button>
-                            <Button onClick={() => setView('DELETE')}>REMOVER</Button>
-                            <Button onClick={() => setView('GET')}>CONSULTAR</Button>
-                        </CrudButtons>
-                        {view === 'ADD' && <AddItem />}
-                        {view === 'DELETE' && <DeleteItem />}
-                        {view === 'GET' && <GetItem />}
-                    </div>
+                            
+                        </ProfileSection>
+                        <DetailsSection>
+                            <h2>Receitas:</h2>
+                            <CrudButtons>
+                                <RecipeButton onClick={() => setView('ADD')}>Criar Receita</RecipeButton>
+                                <RecipeButton onClick={() => setView('VIEW')}>Consultar Receitas</RecipeButton>
+                                <RecipeButton onClick={() => setView('DELETE')}>Remover Receita</RecipeButton>
+                            </CrudButtons>
+                            {view === 'ADD' && <AddItem />}
+                            {view === 'VIEW' && <GetItem />}
+                            {view === 'DELETE' && <DeleteItem />}
+                        </DetailsSection>
+                    </>
                 ) : (
                     <div className="text-center">Loading...</div>
                 )}
             </Card>
->>>>>>> Stashed changes
-        </div>
-      ) : (
-        <div className="text-center">
-          <p>Loading...</p>
-        </div>
-      )}
-    </div>
-  );
+        </Container>
+    );
 }
 
 export default ProfilePage;

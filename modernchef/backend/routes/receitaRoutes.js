@@ -1,4 +1,3 @@
-// backend/routes/receitaRoutes.js
 const express = require('express');
 const router = express.Router();
 const Receita = require('../models/receita');
@@ -64,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         res.send(receita);
     } catch (error) {
         res.status(500).send(error);
-        }
-        });
-        
-        module.exports = router;
+    }
+});
+
+module.exports = router;
